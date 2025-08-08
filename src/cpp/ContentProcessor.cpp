@@ -62,6 +62,14 @@ using std::string;
 			outputContent += "\n\n\n\n";
 			outputContent += R"([Rule])";
 			outputContent += "\n";
+			outputContent += "\tIP-CIDR,91.108.0.0/16,Proxy\n";
+			outputContent += "\tIP-CIDR,109.239.140.0/24,Proxy\n";
+			outputContent += "\tIP-CIDR,149.154.160.0/20,Proxy\n";
+			outputContent += "\tIP-CIDR,14.102.250.18,Proxy\n";
+			outputContent += "\tIP-CIDR,14.102.250.19,Proxy\n";
+			outputContent += "\tIP-CIDR,50.7.31.230,Proxy\n";
+			outputContent += "\tIP-CIDR,174.142.105.153,Proxy\n";
+			outputContent += "\tIP-CIDR,69.65.19.160,Proxy\n";
 			break;
 		case BIND:break;
 		case SSWINDOWS:
