@@ -97,12 +97,42 @@ using std::string;
 
 			//Format
 			switch (targetType) {
-				case SHADOWROCKET: 
-					outputContent += "\tDOMAIN-KEYWORD,";
-					outputContent += readDomainBuffer;
-					if(sourceType == 1) outputContent += ",Proxy\n";
+				case SHADOWROCKET: {
+					// 清理空白
+					string domain = readDomainBuffer;
+					while (!domain.empty() && (domain.back() == '\n' || domain.back() == '\r' || domain.back() == ' ' || domain.back() == '\t')) domain.pop_back();
+					while (!domain.empty() && (domain.front() == ' ' || domain.front() == '\t')) domain.erase(0, 1);
+
+					// 去掉前导的 '.'
+					if (!domain.empty() && domain.front() == '.') {
+						domain.erase(0, 1);
+					}
+
+					bool useKeyword = false;
+					if (domain.find('.') == string::npos || domain.find('*') != string::npos) {
+						useKeyword = true;
+					}
+
+					// g.co 这类短域优先 suffix
+					if (!domain.empty()) {
+						size_t dotPos = domain.find('.');
+						if (dotPos != string::npos) {
+						    string sld = domain.substr(0, dotPos);
+						    string tld = domain.substr(dotPos + 1);
+						    if (sld.size() <= 4 && tld.size() <= 3) {
+						        useKeyword = false;
+						    }
+						}
+					}
+
+					if (useKeyword) outputContent += "\tDOMAIN-KEYWORD,";
+					else outputContent += "\tDOMAIN-SUFFIX,";
+
+					outputContent += domain;
+					if (sourceType == 1) outputContent += ",Proxy\n";
 					else outputContent += ",Direct\n";
 					break;
+				}
 				
 				case BIND:
 					outputContent += "zone \"";
