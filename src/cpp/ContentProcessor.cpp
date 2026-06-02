@@ -70,6 +70,11 @@ using std::string;
 			outputContent += "\tIP-CIDR,50.7.31.230,Proxy\n";
 			outputContent += "\tIP-CIDR,174.142.105.153,Proxy\n";
 			outputContent += "\tIP-CIDR,69.65.19.160,Proxy\n";
+			outputContent += "\tDOMAIN-SUFFIX,jandan.bigyong.com,Proxy\n";
+			outputContent += "\tDOMAIN-SUFFIX,wowhead.com,Proxy\n";
+			outputContent += "\tDOMAIN-SUFFIX,ip138.com,Proxy\n";
+			outputContent += "\tDOMAIN-SUFFIX,ipshudi.com,Proxy\n";
+			outputContent += "\tDOMAIN-SUFFIX,firstrade.com,Proxy\n";
 			break;
 		case BIND:break;
 		case SSWINDOWS:
